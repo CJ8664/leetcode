@@ -57,7 +57,7 @@ class Solution():
 					vertex[wordList[j]] = 1
 			graph[wordList[i]] = vertex
 
-		print(graph)
+		# print(graph)
 		
 		# Main logic
 		start_vertex = beginWord
@@ -87,7 +87,7 @@ class Solution():
 			# Pop out that from dist_dict
 			# loop with that as start vertex
 			
-			print(dist_dict)
+			# print(dist_dict)
 			min_dist = 999
 			min_dist_key = ''
 
@@ -95,7 +95,7 @@ class Solution():
 				if value < min_dist:
 					min_dist = value
 					min_dist_key = key
-					
+
 			if min_dist == 999:
 				min_dist_key = dist_dict.items()[0][0]		
 
@@ -104,8 +104,10 @@ class Solution():
 			start_vertex = min_dist_key
 
 			# print(vertex_predecessors)
-			
-		return final_dist_dict[endWord.encode('utf')] + 1
+		if final_dist_dict[endWord.encode('utf')] == 999:
+			return 0
+		else:	
+			return final_dist_dict[endWord.encode('utf')] + 1
 
 def main():
 
