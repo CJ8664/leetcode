@@ -1,8 +1,6 @@
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
-        num_row = len(board)
-        num_col = len(board[0])
-        word_len = len(word)
+        num_row, num_col, word_len = len(board), len(board[0]), len(word)
         dir = [(1, 0), (-1, 0), (0, -1), (0, 1)]
         
         # optimization 1: If word is greater than board
