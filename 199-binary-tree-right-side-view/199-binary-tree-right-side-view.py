@@ -11,6 +11,7 @@ class Solution:
         q = collections.deque()
         q.append(root)
         result = []
+        
         while q:
             level_value = None
             for _ in range(len(q)):
