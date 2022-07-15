@@ -12,8 +12,7 @@ class Trie:
             if i == len(word) - 1:
                 temp[w]["#"] = None  
             temp = temp[w]
-        # print(word, self.trie)    
-        
+
 
     def search(self, word: str) -> bool:
         temp = self.trie
