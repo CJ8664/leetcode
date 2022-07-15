@@ -24,8 +24,6 @@ class Solution:
             for nr, nc in dir:
                 if search(r + nr, c + nc, i + 1):
                     return True
-            # result = any([search(r + nr, c + nc, i + 1) for nr, nc in dir])
-            # if not result:
             board[r][c] = temp
             return False
         
