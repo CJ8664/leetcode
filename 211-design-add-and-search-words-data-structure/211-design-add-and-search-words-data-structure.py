@@ -1,51 +1,38 @@
-class WordDictionary(object):
+class TrieNode:
+    __slots__ = ("children", "word")
     def __init__(self):
-        """
-        Initialize your data structure here.
-        """
-        self.trie = {}
+        self.children = {} # a : TrieNode
+        self.word = False
 
-    def addWord(self, word):
-        """
-        Adds a word into the data structure.
-        :type word: str
-        :rtype: void
-        """
-        temp = self.trie
-        for ch in word:
-            if ch not in temp:
-                temp[ch] = {}
-            temp = temp[ch]
-        temp["#"] = 1
-
-    def search(self, word):
-        """
-        Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter.
-        :type word: str
-        :rtype: bool
-        """
-        # print word, self.trie
-        temp = self.trie
-        def helper(word, temp):
-            
-            for idx, ch in enumerate(word):
-                if ch == '.':
-                    res = []
-                    for x, t in temp.items():
-                        if x == "#":
-                            res.append(False)
-                        else:
-                            res.append(helper(word[idx+1:], t))
-                    return any(res)
-                if ch not in temp:
+class WordDictionary:
+    def __init__(self):
+        self.root = TrieNode()
+        
+    def addWord(self, word: str) -> None:
+        cur = self.root
+        for c in word:
+            if c not in cur.children:
+                cur.children[c] = TrieNode()
+            cur = cur.children[c]
+        cur.word = True
+        
+    def search(self, word: str) -> bool:
+        def dfs(j, root):
+            cur = root
+            for i in range(j, len(word)):
+                c = word[i]
+                if c == ".":
+                    for child in cur.children.values():
+                        if dfs(i + 1, child):
+                            return True
                     return False
                 else:
-                    temp = temp[ch]
-            if "#" in temp:
-                return True
-            else:
-                return False
-        return helper(word, temp)
+                    if c not in cur.children:
+                        return False
+                    cur = cur.children[c]
+            return cur.word
+        return dfs(0, self.root)
+
 
 # Your WordDictionary object will be instantiated and called as such:
 # obj = WordDictionary()
