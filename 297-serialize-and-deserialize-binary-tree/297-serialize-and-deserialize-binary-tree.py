@@ -30,14 +30,14 @@ class Codec:
         :type data: str
         :rtype: TreeNode
         """
-        data = data.split(",")
+        data = [int(x) if x != "#" else "#" for x in data.split(",")]
         self.idx = 0
         def helper():
             if self.idx >= len(data) or data[self.idx] == "#":
                 self.idx += 1
                 return None
             
-            root = TreeNode(int(data[self.idx]))
+            root = TreeNode(data[self.idx])
             self.idx += 1
             root.left = helper()
             root.right = helper()
