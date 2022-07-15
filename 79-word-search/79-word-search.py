@@ -21,11 +21,10 @@ class Solution:
             if board[r][c] != word[i] or board[r][c] == "#": return False
         
             temp, board[r][c] = board[r][c], "#"
-            for nr, nc in dir:
-                if search(r + nr, c + nc, i + 1):
-                    return True
-            board[r][c] = temp
-            return False
+            result = any(search(r + nr, c + nc, i + 1) for nr, nc in dir)
+            if not result:
+                board[r][c] = temp
+            return result
         
         # Now run expensive DFS
         for r in range(num_row):
