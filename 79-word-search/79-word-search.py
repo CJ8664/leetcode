@@ -9,16 +9,14 @@ class Solution:
         if word_len > num_row * num_col:
             return False
         
-#         # optimization 2: If board has all chars of word
-#         c = collections.Counter()
-#         for row in board:
-#             c.update(row)
-#         for ch in word:
-#             if ch not in c or c[ch] == 0:
-#                 return False
-#             else:
-#                 c[ch] -= 1
-                
+        # optimization 2: If board has all chars of word
+        c = collections.Counter()
+        w = collections.Counter(word)
+        for row in board:
+            c.update(row)
+        for ch in w:
+            if ch not in c or w[ch] > c[ch]: return False
+            
         def search(r, c, i):
             if i == len(word): return True
             if not (0 <= r < num_row) or not(0 <= c < num_col): return False
