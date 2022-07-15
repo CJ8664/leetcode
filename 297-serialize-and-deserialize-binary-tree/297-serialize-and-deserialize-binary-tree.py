@@ -37,7 +37,7 @@ class Codec:
                 self.idx += 1
                 return None
             
-            root = TreeNode(data[self.idx])
+            root = TreeNode(int(data[self.idx]))
             self.idx += 1
             root.left = helper()
             root.right = helper()
