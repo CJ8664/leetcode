@@ -5,19 +5,19 @@ class Solution:
         word_len = len(word)
         dir = [(1, 0), (-1, 0), (0, -1), (0, 1)]
         
-        # optimization 1: If word is greater than board
-        if word_len > num_row * num_col:
-            return False
+#         # optimization 1: If word is greater than board
+#         if word_len > num_row * num_col:
+#             return False
         
-        # optimization 2: If board has all chars of word
-        c = collections.Counter()
-        for row in board:
-            c.update(row)
-        for ch in word:
-            if ch not in c or c[ch] == 0:
-                return False
-            else:
-                c[ch] -= 1
+#         # optimization 2: If board has all chars of word
+#         c = collections.Counter()
+#         for row in board:
+#             c.update(row)
+#         for ch in word:
+#             if ch not in c or c[ch] == 0:
+#                 return False
+#             else:
+#                 c[ch] -= 1
                 
         def search(r, c, i):
             if i == len(word): return True
