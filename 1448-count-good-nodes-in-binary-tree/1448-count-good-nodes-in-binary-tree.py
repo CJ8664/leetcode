@@ -8,17 +8,17 @@ class Solution:
     def goodNodes(self, root: TreeNode) -> int:
         stack = collections.deque()
         stack.append((root, float('-inf')))
-        result = []
+        result = 0
         while stack:
             curr_node, curr_max = stack.pop()
             if curr_node.val >= curr_max:
-                result.append(curr_node.val)
+                result += 1
             next_max = max(curr_max, curr_node.val)
             if curr_node.right:
                 stack.append((curr_node.right, next_max))
             if curr_node.left:
                 stack.append((curr_node.left, next_max))
-        return len(result)
+        return result
             
             
         
