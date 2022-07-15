@@ -23,7 +23,7 @@ class Solution:
             if i == len(word): return True
             if not (0 <= r < num_row) or not(0 <= c < num_col): return False
             if board[r][c] != word[i] or board[r][c] == "#": return False
-            
+        
             temp, board[r][c] = board[r][c], "#"
             result = any([search(r + nr, c + nc, i + 1) for nr, nc in dir])
             if not result:
