@@ -5,27 +5,23 @@ class Solution:
         :type k: int
         :rtype: int
         """
+        k = len(nums) - k
         def partition(l, r):
-            p = nums[(l + r)//2]
-            while l <= r:
-                while nums[l] < p: l += 1
-                while nums[r] > p: r -= 1
-                if l <= r:
-                    nums[l], nums[r] = nums[r], nums[l]
-                    l, r = l + 1, r - 1
-            return l
+            pivot, p = nums[r], l
+            for i in range(l, r):
+                if nums[i] <= pivot:
+                    nums[p], nums[i] = nums[i], nums[p]
+                    p += 1
+            nums[p], nums[r] = nums[r], nums[p]
+            return p
         
-        def quicksort(start, end):
-            if start < end:
-                part = partition(start, end)
-                if part <= len(nums)-k:
-                    quicksort(part, end)
-                else:
-                    quicksort(start, part-1)
-        
-
-        quicksort(0, len(nums)-1)
-        return nums[len(nums)-k]
-        
-        
+        l, r = 0, len(nums) - 1
+        while True:
+            p = partition(l, r)
+            if p < k:
+                l = p + 1
+            elif p > k:
+                r = p - 1
+            else:
+                return nums[p]
         
