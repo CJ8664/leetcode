@@ -1,25 +1,15 @@
 class Twitter:
 
     def __init__(self):
-        self.users_ids = set()
-        self.following_map = {} # follower -> followee
-        self.tweets_map = {} # user -> stack of tweet id
+        self.following_map = defaultdict(set) # follower -> followee
+        self.tweets_map = defaultdict(lambda: deque(maxlen=10)) # user -> stack of tweet id
         self.ts = 0
-        
-    def check_new_user(self, userId: int) -> None:
-        if userId in self.users_ids:
-            return
-        self.users_ids.add(userId)
-        self.tweets_map[userId] = deque(maxlen=10)
-        self.following_map[userId] = set()
-        
+          
     def postTweet(self, userId: int, tweetId: int) -> None:
-        self.check_new_user(userId)
         self.tweets_map[userId].append((self.ts, tweetId))
         self.ts += 1
 
     def getNewsFeed(self, userId: int) -> List[int]:
-        self.check_new_user(userId)
         uids = set()
         uids.add(userId)
         for uid in self.following_map[userId]:
@@ -47,13 +37,10 @@ class Twitter:
         
 
     def follow(self, followerId: int, followeeId: int) -> None:
-        self.check_new_user(followerId)
-        self.check_new_user(followeeId)
         self.following_map[followerId].add(followeeId)
         
         
     def unfollow(self, followerId: int, followeeId: int) -> None:
-        self.check_new_user(followerId)
         if followeeId not in self.following_map[followerId]:
             return None
         self.following_map[followerId].remove(followeeId)
