@@ -6,7 +6,6 @@ class Solution:
         result = []
         subset = []
         def backtrack(idx, rem_sum):
-            print(idx, rem_sum, subset)
             if rem_sum == 0:
                 result.append(copy.copy(subset))
                 return 
