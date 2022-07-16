@@ -10,7 +10,7 @@ class Twitter:
         if userId in self.users_ids:
             return
         self.users_ids.add(userId)
-        self.tweets_map[userId] = []
+        self.tweets_map[userId] = deque(maxlen=10)
         self.following_map[userId] = set()
         
     def postTweet(self, userId: int, tweetId: int) -> None:
