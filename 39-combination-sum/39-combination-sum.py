@@ -9,11 +9,10 @@ class Solution:
                 result.append(subset.copy())
                 return
   
-            # pick the element
+            # pick the element, we are not doing idx + 1 
+            # coz we can repeat the number
             subset.append(candidates[idx])
             dfs(idx, rem_sum - candidates[idx])                
-            # # again pick it in the next call
-            # dfs(idx, rem_sum - candidates[idx])
 
             # Dont pick the element
             subset.pop()
