@@ -1,18 +1,24 @@
+class PendingTask:
+    __slots__ = ["remaining_units", "next_time"]
+    def __init__(self, remaining_units, next_time):
+        self.remaining_units = remaining_units
+        self.next_time = next_time
+        
 class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
         counter = Counter(tasks)
-        h = [-x for x in counter.values()]
-        heapq.heapify(h)
-        q = deque()
-        t = 0
-        while h or q:
-            t += 1
-            if h:
-                c = 1 + heapq.heappop(h)
-                if c != 0:
-                    q.append((c, t + n))
-            if q and q[0][1] == t:
-                heapq.heappush(h, q.popleft()[0])
-        return t
+        ready_tasks = [-x for x in counter.values()]
+        heapq.heapify(ready_tasks)
+        pending_tasks = deque()
+        curr_time = 0
+        while ready_tasks or pending_tasks:
+            curr_time += 1
+            if ready_tasks:
+                remaining_units = 1 + heapq.heappop(ready_tasks)
+                if remaining_units != 0:
+                    pending_tasks.append(PendingTask(remaining_units, curr_time + n))
+            if pending_tasks and pending_tasks[0].next_time == curr_time:
+                heapq.heappush(ready_tasks, pending_tasks.popleft().remaining_units)
+        return curr_time
             
         
