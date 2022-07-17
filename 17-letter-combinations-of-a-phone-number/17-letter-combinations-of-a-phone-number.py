@@ -1,8 +1,5 @@
 class Solution:
-    def letterCombinations(self, digits: str) -> List[str]:
-        if not digits:
-            return None
-        
+    def letterCombinations(self, digits: str) -> List[str]:        
         dialpad_map = {
             "2": "abc",
             "3": "def",
@@ -14,16 +11,18 @@ class Solution:
             "9": "wxyz",
         }
         
-        result, combs = [], []
-        def backtracking(idx):
-            if idx >= len(digits):
-                result.append("".join(combs))
+        result = []
+        def backtracking(idx, curr_str):
+            if len(curr_str) == len(digits):
+                result.append(curr_str)
                 return
+            # Pick a character one by one for number 2, and find all the 
+            # chars that can be used from 3 in the input '23' and so on
             for ch in dialpad_map[digits[idx]]:
-                combs.append(ch)
-                backtracking(idx + 1)
-                combs.pop()
-        backtracking(0)
+                backtracking(idx + 1, curr_str + ch)
+                
+        if digits:      
+            backtracking(0, "")
         return result
                 
             
