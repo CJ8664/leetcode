@@ -20,7 +20,7 @@ class Solution:
             set_ele(bottom_right, tr)
             set_ele(bottom_left, br)
         
-        for row in range(len(matrix)):
+        for row in range(len(matrix)//2):
             for col in range(row, len(matrix) - 1 - row):
                 top_left = (row, col)
                 top_right = (col, len(matrix) - 1 - row)
