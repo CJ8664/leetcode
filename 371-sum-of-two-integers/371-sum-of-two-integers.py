@@ -1,5 +1,6 @@
 class Solution:
     def getSum(self, a: int, b: int) -> int:
+        # https://leetcode.com/problems/sum-of-two-integers/discuss/84282/Python-solution-with-no-%22%2B-*%22-completely-bit-manipulation-guaranteed
         # 32 bits integer max
         MAX = 0x7FFFFFFF
         # 32 bits interger min
