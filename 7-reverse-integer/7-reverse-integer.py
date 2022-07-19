@@ -13,6 +13,5 @@ class Solution:
             res = res if res < MAX else 0
         else:
             res = -res if res < MIN else 0
-        
         return res
         
