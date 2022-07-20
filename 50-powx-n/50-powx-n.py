@@ -1,15 +1,12 @@
 class Solution:
     def myPow(self, x: float, n: int) -> float:
-        if n < 0:
-            n = -n
-            x = 1/x
-        
+        m = abs(n)
         result = 1
         current_product = x
-        while n > 0:
-            if n % 2 == 1:
+        while m > 0:
+            if m % 2 == 1:
                 result *= current_product
             current_product *= current_product
-            n = n // 2
-        return result
+            m = m // 2
+        return result if n > 0 else 1 / result
         
