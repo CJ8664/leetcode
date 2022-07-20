@@ -10,9 +10,7 @@ class Solution:
                 temp = int(num1[i1]) * int(num2[i2]) + res[i1 + i2]
                 res[i1 + i2] = temp % 10
                 res[i1 + i2 + 1] += temp // 10
-        end = 0
-        while res[-1] == 0:
-            res.pop()
+        while res[-1] == 0: res.pop()
         return "".join([str(x) for x in res[::-1]])
                 
                 
