@@ -4,7 +4,7 @@ class Solution:
             return "0"
         
         short, long = (num1, num2) if len(num1) < len(num2) else (num2, num1)
-        result = [0 for _ in range(len(long) * 2)]
+        result = [0 for _ in range(len(long) + len(short))]
         i, j, c = 0, 0, 0
         for s in short[::-1]:
             j = i
