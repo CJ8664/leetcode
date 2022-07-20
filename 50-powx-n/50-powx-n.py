@@ -1,19 +1,15 @@
 class Solution:
     def myPow(self, x: float, n: int) -> float:
-        inv = False
         if n < 0:
-            inv = True
+            n = -n
+            x = 1/x
         
-        def helper(m):
-            if m == 0:
-                return 1
-            if m == 1:
-                return x
-            temp = helper(m//2)
-            temp *= temp
-            if m % 2 == 1:
-                temp *= x
-            return temp
-        t = helper(abs(n))
-        return t if not inv else 1/t
+        result = 1
+        current_product = x
+        while n > 0:
+            if n % 2 == 1:
+                result *= current_product
+            current_product *= current_product
+            n = n // 2
+        return result
         
