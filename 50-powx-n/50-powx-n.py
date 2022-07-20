@@ -1,8 +1,6 @@
 class Solution:
     def myPow(self, x: float, n: int) -> float:
-        m = abs(n)
-        result = 1
-        current_product = x
+        m, result, current_product = abs(n), 1, x
         while m > 0:
             if m % 2 == 1:
                 result *= current_product
