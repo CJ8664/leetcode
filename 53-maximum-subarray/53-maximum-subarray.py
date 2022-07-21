@@ -6,7 +6,7 @@ class Solution:
             if curr_sum < 0:
                 curr_sum = 0
             curr_sum += num
-            max_so_far = max(max_so_far, curr_sum, num)
+            max_so_far = max(max_so_far, curr_sum)
         return max_so_far
             
             
