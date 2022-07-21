@@ -5,7 +5,8 @@ class Solution:
             # new interval starts befor interval
             if newInterval[1] < interval[0]:
                 result.append(newInterval)
-                return result + intervals[i:]
+                result.extend(intervals[i:])
+                return result
             elif interval[1] < newInterval[0]:
                 result.append(interval)
             # new is overlapping
