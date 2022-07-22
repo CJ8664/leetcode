@@ -1,27 +1,22 @@
 class Solution:
     def isNStraightHand(self, hand: List[int], groupSize: int) -> bool:
-        if len(hand) % groupSize > 0:
+        if len(hand) % groupSize:
             return False
-        
-        n_g = len(hand) // groupSize
-        result = []
-        for _ in range(n_g):
-            result.append([])
 
-        heapq.heapify(hand)
-        while hand:
-            h = heapq.heappop(hand)
-            placed = False
-            for r in result:
-                if (len(r) < groupSize) and (len(r) == 0 or r[-1] == h - 1):
-                    r.append(h)
-                    placed = True
-                    break
-            if not placed:
-                return False
+        count = {}
+        for n in hand:
+            count[n] = 1 + count.get(n, 0)
+
+        minH = list(count.keys())
+        heapq.heapify(minH)
+        while minH:
+            first = minH[0]
+            for i in range(first, first + groupSize):
+                if i not in count:
+                    return False
+                count[i] -= 1
+                if count[i] == 0:
+                    if i != minH[0]:
+                        return False
+                    heapq.heappop(minH)
         return True
-        
-                
-                
-            
-        
