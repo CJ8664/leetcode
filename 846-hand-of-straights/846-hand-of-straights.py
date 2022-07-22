@@ -17,7 +17,6 @@ class Solution:
                     break
             if not placed:
                 return False
-        print(result)
         return True
                 
                 
