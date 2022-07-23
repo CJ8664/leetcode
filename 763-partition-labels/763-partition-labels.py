@@ -4,14 +4,15 @@ class Solution:
         for i, c in enumerate(s):
             max_r_pos[c] = max(max_r_pos[c], i)
             
-        l, r, result = 0, 0, []
+        l, r, i = 0, 0, 0
+        result =[]
         while r < len(s):
-            start = l
-            while l <= r:
-                r = max(r, max_r_pos[s[l]])
-                l += 1
-            result.append(r - start + 1)
-            r = l
+            l = i
+            while i <= r:
+                r = max(r, max_r_pos[s[i]])
+                i += 1
+            result.append(r - l + 1)
+            r = i
         return result
             
             
