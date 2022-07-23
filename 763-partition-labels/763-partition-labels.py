@@ -9,7 +9,7 @@ class Solution:
         while r < len(s):
             l = i
             while i <= r:
-                r = max(r, max_r_pos[s[i]])
+                if max_r_pos[s[i]] > r: r = max_r_pos[s[i]]
                 i += 1
             result.append(r - l + 1)
             r = i
