@@ -4,9 +4,7 @@ class Solution:
         for i, c in enumerate(s):
             max_r_pos[c] = max(max_r_pos[c], i)
             
-        l, r = 0, 0
-        
-        result = []
+        l, r, result = 0, 0, []
         while r < len(s):
             start = l
             while l <= r:
