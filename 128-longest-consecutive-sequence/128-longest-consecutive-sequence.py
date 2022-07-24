@@ -1,7 +1,7 @@
 class Solution:
     def longestConsecutive(self, nums):
-        numSet = set(nums)
         longest = 0
+        numSet = set(nums)
 
         for n in nums:
             # check if its the start of a sequence
@@ -9,5 +9,5 @@ class Solution:
                 l = 1
                 while (n + l) in numSet:
                     l += 1
-                longest = max(l, longest)
+                longest = max(longest, l)
         return longest
