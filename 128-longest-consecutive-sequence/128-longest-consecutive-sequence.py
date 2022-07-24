@@ -4,7 +4,6 @@ class Solution:
         result = 0
 
         for n in nums:
-            # check if its the start of a sequence
             if (n - 1) not in num_set:
                 curr_num, curr_len = n, 1
                 while curr_num + 1 in num_set:
