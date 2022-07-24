@@ -5,7 +5,7 @@ class Solution:
         
         for num in num_set:
             # check if its the start of a sequence
-            if num - 1 not in num_set:
+            if (num - 1) not in num_set:
                 current_num = num
                 current_streak = 1
 
