@@ -8,9 +8,8 @@ class Solution:
         dummy = ListNode(next=head)
         offset = dummy
         # Give a head start to make offset
-        while n > 0:
+        for _ in range(n):
             offset = offset.next
-            n -= 1
         
         # Reach the node who's next we want to delete
         start = dummy
