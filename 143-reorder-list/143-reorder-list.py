@@ -32,10 +32,6 @@ class Solution:
                 list2 = list2.next
                 curr = curr.next
             toggle *= -1
-        # if list1:
-        #     curr.next = list1
-        # if list2:
-        #     curr.next = list2
         return dummy.next
                 
             
