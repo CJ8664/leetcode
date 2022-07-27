@@ -5,17 +5,15 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
-        q = deque()
-        q.append(root)
-        while q:
-            node = q.popleft()
-            if node.val == subRoot.val:
-                if self.isSametree(node, subRoot):
-                    return True
-            if node.left: q.append(node.left)
-            if node.right: q.append(node.right)
-        return False
+    def isSubtree(self, s: Optional[TreeNode], t: Optional[TreeNode]) -> bool:
+        if not t:
+            return True
+        if not s:
+            return False
+
+        if self.isSametree(s, t):
+            return True
+        return self.isSubtree(s.left, t) or self.isSubtree(s.right, t)
     
     def isSametree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
         if not p and not q:
