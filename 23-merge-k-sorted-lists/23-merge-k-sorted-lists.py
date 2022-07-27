@@ -16,7 +16,6 @@ class Solution:
         curr = result
         while len(h) > 0:
             _, idx = heapq.heappop(h)
-            print(_, idx)
             curr.next = lists[idx]
             if lists[idx].next:
                 lists[idx] = lists[idx].next
