@@ -14,10 +14,12 @@ class Solution:
             slow = slow.next
             fast = fast.next.next
         
+        # Reverse second half
         prev, curr = None, slow
         while curr:
             prev, curr.next, curr = curr, prev, curr.next
         
+        # Splice together nodes
         list1, list2 = head, prev
         dummy = ListNode()
         curr = dummy
