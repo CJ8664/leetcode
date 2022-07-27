@@ -13,4 +13,5 @@ class Solution:
                 return False
             return helper(node.left, left, node.val) and helper(node.right, node.val, right)
         return helper(root, float('-inf'), float('inf'))
+            
         
