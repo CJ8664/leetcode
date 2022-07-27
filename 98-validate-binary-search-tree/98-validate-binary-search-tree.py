@@ -9,8 +9,11 @@ class Solution:
         def helper(node, left, right):
             if not node:
                 return True
+            # Base condition for BST
             if not (left < node.val < right):
                 return False
+            # All the nodes in the left tree have to be less than root
+            # and also right subtree has to be great than root
             return helper(node.left, left, node.val) and helper(node.right, node.val, right)
         return helper(root, float('-inf'), float('inf'))
             
