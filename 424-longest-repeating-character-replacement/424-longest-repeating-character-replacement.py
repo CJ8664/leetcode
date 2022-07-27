@@ -4,6 +4,7 @@ class Solution:
         l, r = 0, 0
         result = 0
         while r < len(s):
+            # Store how many characters for each alphabet
             char_freq[s[r]] += 1
             # Cannot make substitution
             while (r - l + 1) - max(char_freq.values()) > k:
