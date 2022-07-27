@@ -10,7 +10,6 @@ class ListNode:
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
         h = [(l.val, idx) for idx, l in enumerate(lists) if l]
-        print(h)
         heapq.heapify(h)
         result = ListNode()
         curr = result
