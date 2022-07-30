@@ -35,6 +35,7 @@ class Solution:
                 w += board[r][c]
                 curr = curr.children[board[r][c]]
                 if curr.word:
+                    curr.word = False
                     self.result.add(w)
                 
                 temp, board[r][c] = board[r][c], "#"
