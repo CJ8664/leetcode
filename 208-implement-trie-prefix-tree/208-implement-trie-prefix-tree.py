@@ -4,10 +4,7 @@ class Node:
     def __init__(self):
         self.children = {}
         self.word = False
-        
-    def __repr__(self):
-        return str(self.word) + ": " + str(self.children)
-        
+                
 class Trie:
 
     def __init__(self):
