@@ -10,7 +10,7 @@ class MaxHeap:
     def pop(self):
         return -1 * heapq.heappop(self.data)
     
-    def peek(self):
+    def get_max(self):
         return -1 * self.data[0] if self.data else float('-inf')
 
     def __len__(self):
@@ -28,7 +28,7 @@ class MinHeap:
     def pop(self):
         return heapq.heappop(self.data)
     
-    def peek(self):
+    def get_min(self):
         return self.data[0] if self.data else float('inf')
     
     def __len__(self):
@@ -40,26 +40,27 @@ class MedianFinder:
         self.left = MaxHeap()
         self.right = MinHeap()
         
-
-    def addNum(self, num: int) -> None:
-        if num > self.left.peek():
-            self.right.push(num)
-        else:
-            self.left.push(num)
-            
+    def balance_heaps(self):
         if len(self.left) > len(self.right):
             self.right.push(self.left.pop())
         elif len(self.left) < len(self.right):
             self.left.push(self.right.pop())
-            
+
+    def addNum(self, num: int) -> None:
+        if num > self.left.get_max():
+            self.right.push(num)
+        else:
+            self.left.push(num)
+        
+        self.balance_heaps()
 
     def findMedian(self) -> float:
         if len(self.left) > len(self.right):
-            return self.left.peek()
+            return self.left.get_max()
         elif len(self.left) < len(self.right):
-            return self.right.peek()
+            return self.right.get_min()
         else:
-            return (self.left.peek() + self.right.peek()) / 2
+            return (self.left.get_max() + self.right.get_min()) / 2
             
         
 
