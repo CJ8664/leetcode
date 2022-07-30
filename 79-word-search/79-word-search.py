@@ -16,12 +16,9 @@ class Solution:
             if ch not in c or w[ch] > c[ch]: return False
         
         def dfs(r, c, idx):
-            if idx == WORD_LEN:
-                return True
-            if not (0 <= r < ROWS) or not (0 <= c < COLS):
-                return False
-            if idx > WORD_LEN or board[r][c] != word[idx] or board[r][c] == "#":
-                return False
+            if idx == WORD_LEN: return True
+            if not (0 <= r < ROWS) or not (0 <= c < COLS): return False
+            if board[r][c] != word[idx] or board[r][c] == "#": return False
             
             temp, board[r][c] = board[r][c], "#"
             for nr, nc in dirs:
