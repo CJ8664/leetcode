@@ -1,32 +1,43 @@
 class Solution:
     def findCircleNum(self, isConnected: List[List[int]]) -> int:
         num_province = len(isConnected)
-        par = [i for i in range(num_province)]
+        # Array that stores the parent of a given node, initially
+        # every node's parent is set itself
+        ancestor = [i for i in range(num_province)]
+        # Rank for each node
         rank = [1 for _ in range(num_province)]
         
-        def find_par(a):
-            while a != par[a]:
-                par[a] = par[par[a]]
-                a = par[a]
-            return a
+        def find_ancestor(node):
+            # While we dont reach to top most ancestor
+            while node != ancestor[node]:
+                # Path compression, for a give node, its grandparent is
+                # is also a parent (ancestor) hence reduce the hop from 
+                # child -> parent -> grandparent
+                ancestor[node] = ancestor[ancestor[node]]
+                # For the parent find its parent in the next iteration
+                node = ancestor[node]
+            # Should be the top most ancestor
+            return node
                 
-        def union(a, b):
-            p_a, p_b = find_par(a), find_par(b)
-            if p_a == p_b:
+        def union(node1, node2):
+            node1_ancestor, node2_ancestor = find_ancestor(node1), find_ancestor(node2)
+            # Both nodes have common ancestor, no need to union them
+            if node1_ancestor == node2_ancestor:
                 return 0
-
-            if rank[p_a] > rank[p_b]:
-                par[p_b] = p_a
-                rank[p_a] += rank[p_b]
+            
+            # If node1 ancestor is elder (rank), ask node2 to merge into it
+            # also, with the merge node1 ancestor is more elder now
+            if rank[node1_ancestor] > rank[node2_ancestor]:
+                ancestor[node2_ancestor] = node1_ancestor
+                rank[node1_ancestor] += rank[node2_ancestor]
             else:
-                par[p_a] = p_b
-                rank[p_b] += rank[p_a]
+                ancestor[node1_ancestor] = node2_ancestor
+                rank[node2_ancestor] += rank[node1_ancestor]
             return 1
                 
-        
-        for l in range(len(isConnected)):
-            for r in range(len(isConnected[0])):
-                if isConnected[l][r] == 1:
-                    num_province -= union(l, r)
+        for node1 in range(len(isConnected)):
+            for node2 in range(len(isConnected[0])):
+                if isConnected[node1][node2] == 1:
+                    num_province -= union(node1, node2)
         return num_province
         
