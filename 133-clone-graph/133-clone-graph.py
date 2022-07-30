@@ -8,17 +8,22 @@ class Node:
 
 class Solution:
     def cloneGraph(self, node: 'Node') -> 'Node':
-        oldToNew = {}
+        memory = {}
         def clone(node):
-            if node in oldToNew:
-                return oldToNew[node]
+            if not node:
+                return None
             
-            copy_node = Node(node.val)
-            oldToNew[node] = copy_node
-            for neighbor in node.neighbors:
-                copy_node.neighbors.append(clone(neighbor))
-            return copy_node
+            if node.val in memory:
+                return memory[node.val]
+            
+            node_clone = Node(val=node.val)
+            memory[node.val] = node_clone
+            
+            for neig in node.neighbors:
+                node_clone.neighbors.append(clone(neig))
+            return node_clone
         
-        return clone(node) if node else None
+        return clone(node)
+        
         
         
