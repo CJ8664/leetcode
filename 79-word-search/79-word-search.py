@@ -13,7 +13,6 @@ class Solution:
             temp, board[r][c] = board[r][c], "#"
             for nr, nc in dirs:
                 if dfs(r + nr, c + nc, idx + 1):
-                    board[r][c] = temp
                     return True
             board[r][c] = temp
             return False
