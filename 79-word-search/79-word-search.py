@@ -26,7 +26,8 @@ class Solution:
                     return True
             board[r][c] = temp
             return False
-                
+        
+        # Now run expensive DFS
         for r in range(ROWS):
             for c in range(COLS):
                 if board[r][c] == word[0]:
