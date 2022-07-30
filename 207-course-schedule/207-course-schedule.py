@@ -17,13 +17,16 @@ class Solution:
             # Check all the pre-req of current course
             for p in pre_req_map[c]:
                 if not check_prereq(p):
-                    return False
-            pre_req_map[c] = []
-                
+                    return False                
             
             # Remove current course as visiting so that other 
             # courses can check it in their search
             visiting.remove(c)
+            
+            # Empty the pre-req for this course indicating that
+            # It can be taken. This saves memory and avoids the need 
+            # for additional tracker
+            pre_req_map[c] = []
             
             return True
         
