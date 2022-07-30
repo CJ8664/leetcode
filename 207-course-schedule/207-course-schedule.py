@@ -32,7 +32,7 @@ class Solution:
         for c, p in prerequisites:
             pre_req_map[c].append(p)
             
-        for c, _p in prerequisites:
+        for c in range(numCourses):
             if not check_prereq(c):
                 return False
         return True
