@@ -1,12 +1,9 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        memory, visiting = set(), set()
+        visiting = set()
         pre_req_map = defaultdict(list)
         
         def check_prereq(c):
-            # If we have checked the course before
-            if c in memory:
-                return True
             # This course has no pre-req
             if not pre_req_map[c]:
                 return True
@@ -21,7 +18,8 @@ class Solution:
             for p in pre_req_map[c]:
                 if not check_prereq(p):
                     return False
-                memory.add(p)
+            pre_req_map[c] = []
+                
             
             # Remove current course as visiting so that other 
             # courses can check it in their search
