@@ -1,25 +1,25 @@
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         result = []
-        subset = []
-        def dfs(idx, rem_sum):
-            if rem_sum < 0 or idx >= len(candidates):
+        curr_elements = []
+        candidates.sort()
+        def dfs(curr_sum, idx):
+            if curr_sum > target:
                 return
-            elif rem_sum == 0:
-                result.append(subset.copy())
+            if curr_sum == target:
+                result.append(copy.copy(curr_elements))
                 return
-  
-            # pick the element, we are not doing idx + 1 
-            # coz we can repeat the number
-            subset.append(candidates[idx])
-            dfs(idx, rem_sum - candidates[idx])                
-
-            # Dont pick the element
-            subset.pop()
-            dfs(idx + 1, rem_sum)
-                
-
-        dfs(0, target)       
+            for i in range(idx, len(candidates)):
+                can = candidates[i]
+                curr_elements.append(can)
+                dfs(curr_sum + can, i)
+                curr_elements.pop()
+                if curr_sum + can > target:
+                    break
+        dfs(0, 0)
         return result
+                
+            
+                
             
         
