@@ -1,36 +1,44 @@
+class Node:
+    __slots__ = ["children", "word"]
+    
+    def __init__(self):
+        self.children = {}
+        self.word = False
+        
+    def __repr__(self):
+        return str(self.word) + ": " + str(self.children)
+        
 class Trie:
 
     def __init__(self):
-        self.trie = {}
+        self.trie = Node()
         
 
     def insert(self, word: str) -> None:
-        current_dict = self.trie 
-        for char in word:
-            if char not in current_dict:
-                current_dict[char] = {}
-            current_dict = current_dict[char]
-        current_dict['_'] = '_'
-
+        curr = self.trie
+        for c in word:
+            if c not in curr.children:
+                curr.children[c] = Node()
+            curr = curr.children[c]
+        curr.word = True
 
     def search(self, word: str) -> bool:
-        current_dict = self.trie
-        for char in word:
-            if char in current_dict:
-                current_dict = current_dict[char]
-            else:
+        curr = self.trie
+        for c in word:
+            if c not in curr.children:
                 return False
-        return '_' in current_dict  
+            curr = curr.children[c]
+        return curr.word
         
 
     def startsWith(self, prefix: str) -> bool:
-        current_dict = self.trie
-        for char in prefix:
-            if char in current_dict:
-                current_dict = current_dict[char]
-            else:
+        curr = self.trie
+        for c in prefix:
+            if c not in curr.children:
                 return False
+            curr = curr.children[c]
         return True
+        
 
 
 # Your Trie object will be instantiated and called as such:
