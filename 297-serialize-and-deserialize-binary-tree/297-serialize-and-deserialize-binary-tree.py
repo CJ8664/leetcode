@@ -32,14 +32,15 @@ class Codec:
         :type data: str
         :rtype: TreeNode
         """
-        self.idx = 0 
+        idx = 0 
         preorder = data.split(",")
         def helper():
-            if self.idx >= len(preorder) or preorder[self.idx] == "#":
-                self.idx += 1
+            nonlocal idx
+            if idx >= len(preorder) or preorder[idx] == "#":
+                idx += 1
                 return None
-            node = TreeNode(int(preorder[self.idx]))
-            self.idx += 1
+            node = TreeNode(int(preorder[idx]))
+            idx += 1
             node.left = helper()
             node.right = helper()
             return node
