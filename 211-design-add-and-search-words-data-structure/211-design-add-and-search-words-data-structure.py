@@ -1,37 +1,43 @@
-class TrieNode:
-    __slots__ = ("children", "word")
+class Node:
+    __slots__ = ["children", "word"]
+    
     def __init__(self):
-        self.children = {} # a : TrieNode
+        self.children = {}
         self.word = False
+    def __repr__(self):
+        return str(self.word) + ": " + str(self.children)
 
 class WordDictionary:
+
     def __init__(self):
-        self.root = TrieNode()
+        self.trie = Node()
         
+
     def addWord(self, word: str) -> None:
-        cur = self.root
+        curr = self.trie
         for c in word:
-            if c not in cur.children:
-                cur.children[c] = TrieNode()
-            cur = cur.children[c]
-        cur.word = True
-        
+            if c not in curr.children:
+                curr.children[c] = Node()
+            curr = curr.children[c]
+        curr.word = True
+
+
     def search(self, word: str) -> bool:
-        def dfs(j, root):
-            cur = root
-            for i in range(j, len(word)):
-                c = word[i]
-                if c == ".":
-                    for child in cur.children.values():
-                        if dfs(i + 1, child):
+        def dfs(curr, idx):
+            while idx < len(word):
+                if word[idx] == ".":
+                    for child in curr.children.values():
+                        if dfs(child, idx + 1):
                             return True
+                if word[idx] not in curr.children:
                     return False
-                else:
-                    if c not in cur.children:
-                        return False
-                    cur = cur.children[c]
-            return cur.word
-        return dfs(0, self.root)
+                curr = curr.children[word[idx]]
+                idx += 1
+            return curr.word
+        return dfs(self.trie, 0)
+            
+            
+        
 
 
 # Your WordDictionary object will be instantiated and called as such:
