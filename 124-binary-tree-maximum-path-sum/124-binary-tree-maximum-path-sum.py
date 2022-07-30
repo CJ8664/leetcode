@@ -11,9 +11,10 @@ class Solution:
             # nonlocal res
             
             if not node: return 0
-
-            l_max = helper(node.left)
-            r_max = helper(node.right)
+            # if not node.left and not node.right:
+            #     return
+            l_max = helper(node.left) if node.left else 0
+            r_max = helper(node.right) if node.right else 0
             
             self.res = max(self.res, node.val, node.val + l_max, node.val + r_max, l_max + node.val + r_max)
             
