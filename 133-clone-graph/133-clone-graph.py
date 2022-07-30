@@ -10,12 +10,11 @@ class Solution:
     def cloneGraph(self, node: 'Node') -> 'Node':
         memory = {}
         def clone(node):
-            if not node:
-                return None
+            if node.val in memory: return memory[node.val]
             
-            if node.val in memory:
-                return memory[node.val]
-            
+            # Create a clone and save in memory so that if the 
+            # current node is someone's neighbor then they can
+            # get the clone from memory
             node_clone = Node(val=node.val)
             memory[node.val] = node_clone
             
@@ -23,7 +22,7 @@ class Solution:
                 node_clone.neighbors.append(clone(neig))
             return node_clone
         
-        return clone(node)
+        return clone(node) if node else None
         
         
         
