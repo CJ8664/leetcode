@@ -2,7 +2,7 @@ class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         result = []
         subset = []
-        candidates.sort()
+        # candidates.sort()
         
         def dfs(idx, curr_sum):
             if curr_sum > target or idx >= len(candidates):
