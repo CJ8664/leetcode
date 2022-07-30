@@ -5,24 +5,26 @@
 #         self.left = None
 #         self.right = None
 
-class Codec:
+class Codec: 
+    # Cannot use preorder + inorder serialization because 
+    # there can be duplicate nodes in a tree
     def serialize(self, root):
         """Encodes a tree to a single string.
         
         :type root: TreeNode
         :rtype: str
         """
-        res = []
-        def preorder(root):
-            if root is None:
-                res.append("#")
+        pre = []
+        def preorder(node):
+            if not node:
+                pre.append("#")
             else:
-                res.append(str(root.val))
-                preorder(root.left)
-                preorder(root.right)
+                pre.append(str(node.val))
+                preorder(node.left)
+                preorder(node.right)
         preorder(root)
-        return ",".join(res)
-
+        return ",".join(pre)
+        
     
     def deserialize(self, data):
         """Decodes your encoded data to tree.
@@ -30,21 +32,20 @@ class Codec:
         :type data: str
         :rtype: TreeNode
         """
-        data = [int(x) if x != "#" else "#" for x in data.split(",")]
-        self.idx = 0
+        idx = 0 
+        preorder = data.split(",")
         def helper():
-            if self.idx >= len(data) or data[self.idx] == "#":
-                self.idx += 1
+            nonlocal idx
+            if idx >= len(preorder) or preorder[idx] == "#":
+                idx += 1
                 return None
-            
-            root = TreeNode(data[self.idx])
-            self.idx += 1
-            root.left = helper()
-            root.right = helper()
-            return root
+            node = TreeNode(int(preorder[idx]))
+            idx += 1
+            node.left = helper()
+            node.right = helper()
+            return node
         
         return helper()
-    
 
 # Your Codec object will be instantiated and called as such:
 # ser = Codec()
