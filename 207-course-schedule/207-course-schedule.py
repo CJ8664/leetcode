@@ -1,7 +1,7 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         memory, visiting = set(), set()
-        pre_req_map = defaultdict(set)
+        pre_req_map = defaultdict(list)
         
         def check_prereq(c):
             # If we have checked the course before
@@ -30,7 +30,7 @@ class Solution:
             return True
         
         for c, p in prerequisites:
-            pre_req_map[c].add(p)
+            pre_req_map[c].append(p)
             
         for c, _p in prerequisites:
             if not check_prereq(c):
