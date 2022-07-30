@@ -23,6 +23,8 @@ class Solution:
         for c in range(COLS):
             search(0, c, -1, pac_plots)
             search(ROWS - 1, c, -1, atl_plots)
-            
+        
+        # Return the set of elements that can be reached 
+        # from both pacific and atlantic
         return (pac_plots & atl_plots)
         
