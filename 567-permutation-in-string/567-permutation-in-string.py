@@ -1,8 +1,6 @@
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
         s1_counter = Counter(s1)
-        s1_counter_copy = copy.copy(s1_counter)
-        
         l, r = 0, 0
         while r < len(s2):
             if s2[r] in s1_counter: 
