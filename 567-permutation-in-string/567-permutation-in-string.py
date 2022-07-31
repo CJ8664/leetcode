@@ -5,7 +5,6 @@ class Solution:
         
         l, r = 0, 0
         while r < len(s2):
-            print(s2[l], s2[r], s1_counter)
             if s2[r] in s1_counter: 
                 if s1_counter[s2[r]] > 0:
                     s1_counter[s2[r]] -= 1
