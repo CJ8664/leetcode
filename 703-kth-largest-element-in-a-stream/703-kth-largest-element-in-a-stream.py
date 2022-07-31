@@ -4,15 +4,12 @@ class KthLargest:
         self.nums = nums
         self.k = k
         heapq.heapify(self.nums)
-        self.trimNums()
         
-    def trimNums(self):
-        while len(self.nums) > self.k:
-            heapq.heappop(self.nums)
 
     def add(self, val: int) -> int:
         heapq.heappush(self.nums, val)
-        self.trimNums()
+        while len(self.nums) > self.k:
+            heapq.heappop(self.nums)
         return self.nums[0]
         
 
