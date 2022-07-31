@@ -1,20 +1,20 @@
 class Solution:
     def longestPalindrome(self, s: str) -> str:
         result = ""
-        for start in range(len(s)):
-            l, r = start, start
+        def max_palindrome(l, r):
+            nonlocal result
             while 0 <= l and r < len(s):
-                if l == start and r < len(s) - 1 and s[l] == s[r + 1]:
-                    r += 1
-                    continue
-                elif s[l] == s[r]:
-                    l -= 1
-                    r += 1
-                    continue
-                break        
-            temp = s[l+1:r]
-            if len(temp) > len(result):
-                result = temp
+                if s[l] != s[r]:
+                    break
+                l, r = l - 1, r + 1
+            if r - l - 1 > len(result):
+                result = s[l + 1:r]
+
+        for idx in range(len(s)):
+            # odd length
+            max_palindrome(idx, idx)
+            # even length
+            max_palindrome(idx, idx + 1)
         return result
 
         
