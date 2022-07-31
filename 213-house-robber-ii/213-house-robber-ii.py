@@ -1,7 +1,6 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
         def helper(nums):
-            print(nums)
             rob1, rob2 = 0, 0
             for n in nums:
                 temp = max(n + rob1, rob2)
