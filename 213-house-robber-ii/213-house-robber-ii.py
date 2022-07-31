@@ -8,6 +8,7 @@ class Solution:
                 rob1 = rob2
                 rob2 = temp
             return rob2
+        # MAX of If there is only one house; nums[0] else skip first and skip last
         return max(nums[0], helper(nums[1:]), helper(nums[:-1]))
         
         
