@@ -1,24 +1,19 @@
 class Solution:
     def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
-        answer = [0 for _ in range(len(temperatures))]
-        idx = len(temperatures) - 2
-        while idx >= 0:
-            if temperatures[idx] < temperatures[idx + 1]:
-                answer[idx] = 1
-            else:
-                i = idx + answer[idx + 1] + 1
-                while i < len(temperatures):
-                    if temperatures[i] > temperatures[idx]:
-                        answer[idx] = i - idx
-                        break
-                    elif answer[i] == 0:
-                        answer[idx] = 0
-                        break
-                    else:
-                        i = i + answer[i]
-            idx -= 1
-        return answer
-                    
+        result = [0] * len(temperatures) 
+        stack = collections.deque()
+        for r in range(len(temperatures)):
+            # If the current temperature is greater than top of stack
+            # means we found result for top of stack. Update the result
+            # for the poped element. Keep checking with new top until 
+            # the stack is empty or stack top is greater than current
+            while stack and temperatures[r] > stack[-1][0]:
+                _, l = stack.pop()
+                result[l] = r - l
+            # Stack is empty or stack top is greater than current,
+            # this means we now put this temperatur as "pending" in stack
+            stack.append((temperatures[r], r))
+        return result
                     
             
                 
