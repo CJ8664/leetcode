@@ -1,7 +1,7 @@
 import os
 
-for f in os.listdir(".."):
-    path = f"../{f}"
+for f in os.listdir("../leetcode"):
+    path = f"../leetcode/{f}"
     print(f"Checking path {path}")
     if not os.path.isdir(path):
         continue
