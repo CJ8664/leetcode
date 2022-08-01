@@ -10,6 +10,7 @@ class Solution:
             while stack and temperatures[r] > stack[-1][0]:
                 _, l = stack.pop()
                 result[l] = r - l
+                
             # Stack is empty or stack top is greater than current,
             # this means we now put this temperatur as "pending" in stack
             stack.append((temperatures[r], r))
