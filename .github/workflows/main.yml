@@ -1,10 +1,8 @@
 name: code-to-gitbooks
 
 on:
-  push:
-    branches:    
-      - 'main'
-      - 'releases/**'
+  schedule:
+    - cron: '5 * * * *'
       
 jobs:
   code-to-gitbooks:
@@ -12,7 +10,7 @@ jobs:
 
     steps:
     - name: Checkout repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         ref: ${{ github.head_ref }}
     
@@ -23,7 +21,7 @@ jobs:
       
     - name: Execute py script to copy python file to CODE.md
       run: |
-        python scripts/run.py
+        python ./scripts/run.py
 
     - name: Commit CODE.md
       uses: stefanzweifel/git-auto-commit-action@v4.14.1
