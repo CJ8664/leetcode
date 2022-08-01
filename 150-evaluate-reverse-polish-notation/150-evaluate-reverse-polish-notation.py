@@ -5,7 +5,6 @@ class Solution:
             if token not in ("+", "-", "*", "/"):
                 stack.append(int(token))
                 continue
-            # print(stack)
             b = stack.pop()
             a = stack.pop()
             if token == "+":
