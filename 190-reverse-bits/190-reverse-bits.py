@@ -6,9 +6,8 @@ class Solution:
         # shift it becomes msb
         result = 0
         for _ in range(32):
-            lsb = n & 1
-            n = n >> 1
-            result = result | lsb
             result = result << 1
-        return result >> 1
+            result = result | n & 1
+            n = n >> 1
+        return result
         
