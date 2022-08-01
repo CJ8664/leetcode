@@ -2,8 +2,8 @@ name: Sync code to CODE.md
 
 on:
   workflow_dispatch:
-#   schedule:
-#     - cron: '5 * * * *'
+  schedule:
+    - cron: '0 0 * * *'
       
 jobs:
   code-to-gitbooks:
