@@ -1,3 +1,5 @@
+name: Sync code to CODE.md
+
 on:
   schedule:
     - cron: '5 * * * *'
