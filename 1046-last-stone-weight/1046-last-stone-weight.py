@@ -1,8 +1,5 @@
 class Solution:
     def lastStoneWeight(self, stones: List[int]) -> int:
-        if len(stones) == 1:
-            return stones[0]
-        
         # This is required so that we can use Max heap
         for idx in range(len(stones)):
             stones[idx] *= -1
