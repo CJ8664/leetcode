@@ -8,6 +8,8 @@ class Solution:
             # - second last step and take two steps
             # - last step and take one step
             cost[i] += min(cost[i-2], cost[i-1])
+        # Once you are at the end of array the result is minimum of
+        # cost to get to last step or second last step
         return min(cost[-1], cost[-2])
             
             
