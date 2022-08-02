@@ -7,8 +7,8 @@ class Solution:
             visited.add(n)
             new_n = 0
             while n > 0:
-                new_n += (n % 10) ** 2
-                n = n // 10
+                n, d = divmod(n, 10)
+                new_n += d ** 2
             n = new_n
         return True
         
