@@ -3,27 +3,28 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
-        f_row_zero = f_col_zero = False
-        for row in range(len(matrix)):
-            for col in range(len(matrix[0])):
-                if matrix[row][col] == 0:
-                    matrix[row][0] = matrix[0][col] = 0
-                    if row == 0:
-                        f_row_zero = True
-                    if col == 0:
-                        f_col_zero = True
-        
-        # Update everything except first row and col
-        for row in range(1, len(matrix)):
-            for col in range(1, len(matrix[0])):
-                if matrix[row][0] == 0 or matrix[0][col] == 0:
-                    matrix[row][col] = 0
-        
-        if f_row_zero:
-            for col in range(len(matrix[0])):
-                matrix[0][col] = 0
-                
-        if f_col_zero:
-            for row in range(len(matrix)):
-                matrix[row][0] = 0
+        top, left = False, False
+        for r in range(len(matrix)):
+            for c in range(len(matrix[0])):
+                if matrix[r][c] == 0:
+                    if r == 0:
+                        top = True
+                    if c == 0:
+                        left = True
+                    matrix[r][0] = 0
+                    matrix[0][c] = 0
+               
+        for r in range(1, len(matrix)):
+            for c in range(1, len(matrix[0])):
+                if matrix[r][0] == 0 or matrix[0][c] == 0:
+                    matrix[r][c] = 0
+
+        if top:
+            for c in range(len(matrix[0])):
+                matrix[0][c] = 0
+        if left:
+            for r in range(len(matrix)):
+                matrix[r][0] = 0
+                    
+            
         
