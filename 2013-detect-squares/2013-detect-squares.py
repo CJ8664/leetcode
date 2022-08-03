@@ -16,7 +16,8 @@ class DetectSquares:
         result = 0
         for (x2, y2), c2 in self.points.items():
             # The slope has to be 1 for the two points
-            # to be diagonal of the square
+            # to be diagonal of the square. Also, the points cannot
+            # have any common X or Y
             if (abs(x2-x1) != abs(y2 - y1)) or x1 == x2 or y1 == y2:
                 continue
 
