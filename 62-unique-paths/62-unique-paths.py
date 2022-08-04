@@ -1,22 +1,15 @@
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
-        result = 0
-        dirs = [(0, 1), (1, 0)]
-        grid = [[0 for i in range(n)] for j in range(m)]
-        grid[m - 1][n - 1] = 1
-        
-        for r in range(m - 1, -1 , -1):
+        row = [1 for _ in range(n)]
+        for _ in range(m - 1):
+            new_row = [0 for _ in range(n)]
             for c in range(n - 1, -1, -1):
-                if r == m - 1 and c == n - 1:
-                    continue
                 if c == n - 1:
-                    grid[r][c] = grid[r + 1][c]
-                elif r == m - 1:
-                    grid[r][c] = grid[r][c + 1]
+                    new_row[c] = 1
                 else:
-                    grid[r][c] = grid[r + 1][c] + grid[r][c + 1]
-                
-        return grid[0][0]
+                    new_row[c] = new_row[c + 1] + row[c]
+            row = new_row
+        return row[0]
             
             
             
