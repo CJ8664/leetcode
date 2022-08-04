@@ -16,9 +16,6 @@ class Solution:
                 else:
                     grid[r][c] = grid[r + 1][c] + grid[r][c + 1]
                 
-        for row in grid:
-            print(row)
-                
         return grid[0][0]
             
             
