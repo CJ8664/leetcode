@@ -9,28 +9,14 @@ class Solution:
         curr = dummy
         carry = 0
         
-        while l1 and l2:
-            carry, s = divmod(l1.val + l2.val + carry, 10)
+        while l1 or l2 or carry:
+            v1 = l1.val if l1 else 0
+            v2 = l2.val if l2 else 0
+            carry, s = divmod(v1 + v2 + carry, 10)
             curr.next = ListNode(val=s)
             curr = curr.next
-            l1 = l1.next
-            l2 = l2.next
-            
-        while l1:
-            carry, s = divmod(l1.val + carry, 10)
-            curr.next = ListNode(val=s)
-            curr = curr.next
-            l1 = l1.next
-            
-        while l2:
-            carry, s = divmod(l2.val + carry, 10)
-            curr.next = ListNode(val=s)
-            curr = curr.next
-            l2 = l2.next
-            
-        if carry == 1:
-            curr.next = ListNode(val=carry)
-            curr = curr.next
+            l1 = l1.next if l1 else None
+            l2 = l2.next if l2 else None
             
         return dummy.next
             
