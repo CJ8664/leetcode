@@ -5,7 +5,6 @@ class Solution:
         if sum(gas) < sum(cost):
             return -1
         
-        
         total, result = 0, 0
         for i, (g, c) in enumerate(zip(gas, cost)):
             total += g - c
