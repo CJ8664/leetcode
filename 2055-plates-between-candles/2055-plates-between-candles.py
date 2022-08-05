@@ -10,12 +10,7 @@ class Solution:
             nearest_right_candle[r] = r if s[r] == "|" else (nearest_right_candle[r + 1] if r < len(s) - 1 else -1)
             candle_count[l] = candle_count[l-1] + 1 if s[l] == "|" else candle_count[l-1]
             l, r = l + 1, r - 1
-        
-        print(nearest_right_candle)
-        print(nearest_left_candle)
-        print(candle_count)
-        print(len(s))
-        
+                
         result = []
         for l, r in queries:
             nrc, nlc = nearest_right_candle[l], nearest_left_candle[r]
