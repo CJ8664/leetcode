@@ -1,15 +1,21 @@
 class Solution:
     def findKthPositive(self, arr: List[int], k: int) -> int:
-        i, j, n = 0, 0, 0
-        while j < len(arr):
+        i, n = 0, 0
+        while i < len(arr):
             n += 1
-            if n != arr[j]:
+            # If the arr element is not same as "n"
+            # decrement "k" to indicate that one missing 
+            # element is processed
+            if n != arr[i]:
                 k -= 1
+            # If the element is the same as "n" just move
+            # to the next element in array
             else:
-                j += 1
+                i += 1
             if k == 0:
                 return n
-        for _ in range(k):
-            n += 1
-        return n
+        # If all "k" missing elements were not processed in array
+        # n would be the last element in array + k remaining missing
+        # elements to be processed
+        return n + k
         
