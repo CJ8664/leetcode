@@ -10,18 +10,18 @@ class Solution:
         
         # Get the length
         curr, l, tail = head, 0, None
-        
         while curr:
             if curr.next == None: tail = curr
             curr, l = curr.next, l + 1
                 
-        # Nnumber of nodes in first part
+        # Number of nodes in first part
         stop_idx = l - (k % l)
         
-        
+        # If the entire list is the first part
         if stop_idx == l:
             return head
         
+        # Get to the end of result list
         curr = head
         for _ in range(stop_idx - 1):
             curr = curr.next
