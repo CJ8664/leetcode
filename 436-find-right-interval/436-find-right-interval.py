@@ -3,12 +3,14 @@ class Solution:
         if len(intervals) == 1:
             return [-1]
         
+        # Store all the starts and corresponding indexes
         indexes = [(float('inf'), -1)]
         for idx, interval in enumerate(intervals):
             indexes.append((interval[0], idx))
+            
+        # For binary search, find the start value greater than
+        # or equal to passed num.
         indexes.sort()
-        
-        result = []
         def bin_search(num):
             l, r = 0, len(indexes) - 1
             while l <= r:
@@ -19,8 +21,10 @@ class Solution:
                     l = mid + 1
                 else:
                     r = mid - 1
+            # l is the index where num would have been inserted
             return indexes[l][1]
         
+        result = []
         for interval in intervals:
             result.append(bin_search(interval[1]))
             
