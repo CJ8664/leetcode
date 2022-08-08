@@ -5,7 +5,7 @@
 #         self.next = next
 class Solution:
     def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
-        if not head or k == 0:
+        if not head:
             return head
         
         # Get the length
@@ -18,7 +18,7 @@ class Solution:
         stop_idx = l - (k % l)
         
         # If the entire list is the first part
-        if stop_idx == l:
+        if stop_idx == l or stop_idx == 0:
             return head
         
         # Get to the end of result list
