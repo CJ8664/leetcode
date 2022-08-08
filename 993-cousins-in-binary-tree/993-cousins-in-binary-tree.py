@@ -20,7 +20,6 @@ class Solution:
                 if curr.left: q.append((curr.left, curr.val))
                 if curr.right: q.append((curr.right, curr.val))
             depth += 1
-        print(x_dep, x_par, y_dep, y_par)
         return x_dep == y_dep and x_par != y_par
         
         
