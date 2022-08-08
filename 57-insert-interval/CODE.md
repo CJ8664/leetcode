@@ -18,16 +18,9 @@ class Solution:
         result.append(newInterval)
         return result
                 
-                
-            
-                
-                
-            
-            
-
                     
-                
             
             
-        
+            
+            
 ```
