@@ -9,6 +9,10 @@ class Solution:
         if not root:
             return False
         
+        #####################
+        ##### RECURSIVE #####
+        #####################
+        
         def helper(curr, curr_sum):
             if curr_sum == targetSum and not curr.left and not curr.right:
                 return True
@@ -17,5 +21,19 @@ class Solution:
             right = helper(curr.right, curr_sum + curr.right.val) if curr.right else False
             return left or right
         return helper(root, root.val)
+    
+        #####################
+        ##### ITERATIVE #####
+        #####################
             
+        stack = [(root, root.val)]
+        while stack:
+            cur, pathsum = stack.pop()
+            if not cur.left and not cur.right and pathsum == targetSum:
+                return True
+            if cur.left:
+                stack.append((cur.left, pathsum + cur.left.val))
+            if cur.right:
+                stack.append((cur.right, pathsum + cur.right.val))
+        return False
         
