@@ -24,6 +24,9 @@ class Solution:
         curr = head
         for _ in range(stop_idx - 1):
             curr = curr.next
+        # result head is the next element of first part
+        # first part's next should be NULL
+        # tail of the original list points to original head
         result, curr.next, tail.next = curr.next, None, head
         return result
         
