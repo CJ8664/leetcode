@@ -16,8 +16,7 @@ class Solution:
                 
         # Number of nodes in first part
         stop_idx = l - (k % l)
-        
-        # If the entire list is the first part
+        # If the entire list is the first part or second part
         if stop_idx == l or stop_idx == 0:
             return head
         
@@ -25,10 +24,7 @@ class Solution:
         curr = head
         for _ in range(stop_idx - 1):
             curr = curr.next
-            
-        result = curr.next
-        curr.next = None
-        tail.next = head
+        result, curr.next, tail.next = curr.next, None, head
         return result
         
         
