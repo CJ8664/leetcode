@@ -13,7 +13,6 @@ class Solution:
                 matrix[N - 1 - j][i] = matrix[N - 1 - i][N - 1 - j]
                 matrix[N - 1 - i][N - 1 - j] = matrix[j][N - 1 - i]
                 matrix[j][N - 1 - i] = temp
-                print(matrix)
         
         
 ```
