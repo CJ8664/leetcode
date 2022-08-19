@@ -1,24 +1,16 @@
 class Solution:
     def isRobotBounded(self, instructions: str) -> bool:
-        turns = {
-            (0, 1): ((-1, 0), (1, 0)),
-            (0, -1): ((1, 0), (-1, 0)),
-            (1, 0): ((0, 1), (0, -1)),
-            (-1, 0): ((0, -1), (0, 1)),
-        }
-        
-        dir, pos = (0, 1), (0, 0)
-        
+        dir_x, dir_y, x, y = 0, 1, 0, 0
        
         for ins in instructions:
             if ins == "G":
-                pos = (dir[0] + pos[0], dir[1] + pos[1])
+                x, y = x + dir_x, y + dir_y
             if ins == "L":
-                dir = turns[dir][0]
+                dir_x, dir_y = -1 * dir_y, dir_x
             if ins == "R":
-                dir = turns[dir][1]
+                dir_x, dir_y = dir_y, -1 * dir_x
             
-        return pos == (0,0) or dir != (0, 1)
+        return (x, y) == (0, 0) or (dir_x, dir_y) != (0, 1)
                 
             
         
