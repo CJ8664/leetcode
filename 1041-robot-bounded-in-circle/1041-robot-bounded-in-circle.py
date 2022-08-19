@@ -10,7 +10,7 @@ class Solution:
         dir, pos = (0, 1), (0, 0)
         
        
-        for ins in instructions*4:
+        for ins in instructions:
             if ins == "G":
                 pos = (dir[0] + pos[0], dir[1] + pos[1])
             if ins == "L":
