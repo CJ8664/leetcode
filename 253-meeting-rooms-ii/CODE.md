@@ -28,4 +28,5 @@ class Solution:
                 e_idx += 1
             result = max(result, active_meetings)
         return result 
+
 ```

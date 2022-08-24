@@ -19,4 +19,5 @@ class Solution:
             if intervals[i].end > intervals[i + 1].start:
                 return False
         return True
+
 ```
