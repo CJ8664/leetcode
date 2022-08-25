@@ -15,7 +15,7 @@ class Solution:
         while q:
             for _ in range(len(q)):
                 curr = q.popleft()
-                # If left node return depth
+                # If leaf node return depth
                 if not curr.left and not curr.right:
                     return depth
                 if curr.left: q.append(curr.left)
