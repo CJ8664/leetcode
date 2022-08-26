@@ -15,12 +15,14 @@ class Solution:
             # IF does not have right its left subtree value is 0
             r_max = helper(node.right) if node.right else 0
             
-            # Result can be multiple combination
-            res = max(res, node.val, node.val + l_max, node.val + r_max, l_max + node.val + r_max)
-            
             # max val at current node can be the node itself if
             # the children bring negative value
-            return max(node.val, node.val + l_max, node.val + r_max)
+            curr_max = max(node.val, node.val + l_max, node.val + r_max)
+            
+            # Result can be multiple combination
+            res = max(res, curr_max, l_max + node.val + r_max)
+            
+            return curr_max
         
         helper(root)
         return res
