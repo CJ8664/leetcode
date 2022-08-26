@@ -7,9 +7,7 @@ class Solution:
                 res[0] = max(res[0], x)
                 res[1] = max(res[1], y)
                 res[2] = max(res[2], z)
-            if all([a==x for a, x in zip(target, res)]):
-                return res
-        return False
+        return all([a==x for a, x in zip(target, res)])
             
             
         
